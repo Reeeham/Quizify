@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Sign Up for a Quiz</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" href="../css/index.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- <form id="sign-up">
+            <div>
+                <label for="name">Enter your name:</label>
+                <input type="text" name="name" id="name"  required />
+            </div>
+            <div>
+                <label for="email">Enter your email:</label>
+                <input type="email" name="email" id="email" required />
+                <div class="requirements"> Must be a valid email addres!</div>
+            </div>
+            <div>
+                <label for="date">Enter your birth of date:</label>
+                <input type="date" name="date" id="date" required>
+            </div>
+            <div>
+                <label for="gender">Enter your gender:</label>
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female" required>
+                <label for="female">Female</label>
+            </div>
+            <div>
+                <label for="phone">Enter your phone number:</label>
+                <input type="tel" id="phone" name="phone" 
+                    pattern="^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$" required>
+                    <div class="requirements"> Must be a valid Phone Number!</div>
+
+            </div>
+            <div>
+                <label for="country">Enter your country:</label>
+                <select required>
+                    <option value="Egypt">Egypt</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Austria">Austria</option>
+                    <option value="Bahrain">Bahrain</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Bulgaria">Bulgaria</option>
+                    <option value="Canada">Canada</option <option value="China">China</option>
+                </select>
+            </div>
+            <div>
+                <label for="quizId">Enter QuizID:</label>
+                <input type="text" name="quizId" id="quizId" required />
+            </div>
+            <input type="submit">
+        </form> -->
+        <form action="#0">
+            <div>
+            
+            <input type="text" name="firstname" id="firstname" placeholder=" " required>
+            <label for="firstname">First name</label>
+            </div>
+            <div>
+            
+            <input type="text" name="lastname" id="lastname" placeholder=" " required>
+            <label for="lastname">Last name</label>
+            </div>
+            <div>
+            
+            <input type="tel" name="tel" id="tel" placeholder=" "
+            pattern="^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$" required>
+            <label for="tel">Phone No.</label>
+            <div class="requirements"> Must be a valid Phone Number!</div>
+            </div>
+            <div>
+            
+            <input type="email" name="email" id="email" placeholder=" " required>
+            <label for="email">Email</label>
+            <div class="requirements"> Must be a valid email addres!</div>
+            </div>
+
+            <!-- <div>
+            <input type="password" name="password" id="password" placeholder=" "
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required>
+            <label for="password">Password</label>
+            <div class="requirements"> Must be a valid password!</div>
+            </div> -->
+        
+            <div>
+                <select required name="country" id="country" required>
+                    <option value="Egypt">Egypt</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Austria">Austria</option>
+                    <option value="Bahrain">Bahrain</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Bulgaria">Bulgaria</option>
+                    <option value="Canada">Canada</option <option value="China">China</option>
+                </select>
+                
+            <label for="country">Enter your country:</label>
+            </div>
+           
+            <input type="submit" value="Sign up"/>
+            </form>
+    </div>
+    <script src='scripts/sign-up.js'></script>
+</body>
+
+</html>

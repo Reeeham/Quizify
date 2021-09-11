@@ -1,15 +1,15 @@
-# dependencies
-node_modules
-
-# production
-build
-
-# misc
-.DS_Store
-
-npm-debug.log
-yarn-error.log
-yarn.lock
-.yarnclean
-.vscode
-.idea
+node_modules/
+/.babelrc
+/.babelrc
+/.browserslistrc
+/.dependabot/config.yml
+/.eslintrc
+/.github/FUNDING.yml
+/.stylelintrc.json
+/.travis.yml
+/.vs/Quizify/v16/.suo
+/.vs/slnx.sqlite
+/.vs/VSWorkspaceState.json
+/webpack/webpack.common.js
+/webpack/webpack.config.dev.js
+/webpack/webpack.config.prod.js
