@@ -2,7 +2,7 @@ var form = document.forms['sign-up'];
 var emailEl = document.querySelector('#email');
 var nameEl = document.querySelector('#name');
 var DOBEl = document.querySelector('#date');
-var genderEl = document.getElementsByName("gender");
+var genderEl = document.getElementsByName('gender');
 var quizId = document.querySelector('#quizId');
 var phoneNoEl = document.querySelector('#phone');
 
@@ -19,8 +19,13 @@ const isPasswordSecure = (password) => {
 function isValidDate(d) {
     return d instanceof Date && !isNaN(d);
 }
-function atLeastOneRadio() {
-    return ($('input[type=radio]:checked').size() > 0);
+function atLeastOneRadio(radioElement) {
+   for(let r of radioElement){
+       if(r.checked) { 
+           return true;
+       }
+   }
+   return false;
 }
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
@@ -97,11 +102,10 @@ const checkDOB = () => {
 }
 const checkGender = () => {
     let valid = false;
-    const gender = genderEl.value;
-    if (!atLeastOneRadio(gender)) {
-        showError(genderEl, 'gender cannot be blank.');
+    if (!atLeastOneRadio(genderEl)) {
+        showError(genderEl[0], 'gender cannot be blank.');
     } else {
-        showSuccess(genderEl);
+        showSuccess(genderEl[0]);
         valid = true;
     }
     return valid;
@@ -145,8 +149,15 @@ form.addEventListener('input', debounce(function (e) {
         case 'male':
             checkGender();
             break;
+        case 'female':
+            checkGender();
+            break;
         case 'phone': 
             checkPhoneNumber();
             break;
     }
 }));
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    checkGender();
+})
