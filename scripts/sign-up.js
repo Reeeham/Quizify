@@ -5,7 +5,7 @@ var DOBEl = document.querySelector('#date');
 var genderEl = document.getElementsByName('gender');
 var quizId = document.querySelector('#quizId');
 var phoneNoEl = document.querySelector('#phone');
-
+var countryEl = form.country;
 const isRequired = value => value === '' ? false : true;
 const isBetween = (length, min, max) => length < min || length > max ? false : true;
 const isEmailValid = (email) => {
@@ -121,6 +121,20 @@ const checkPhoneNumber = () => {
     }
     return valid;
 }
+const checkCountry = () => {
+    let valid = false;
+    if(!(countryEl.value === '')) {
+        valid = true;
+        showSuccess(countryEl)
+    }else { 
+        showError(countryEl, 'you must choose country.')
+    }
+    return valid;
+}
+const getFormValues = () => {
+    let form = document.querySelector('form')
+    return Object.values(form).reduce((obj,field) => { obj[field.name] = field.value; return obj }, {})
+}
 const debounce = (fn, delay = 500) => {
     let timeoutId;
     return (...args) => {
@@ -159,5 +173,8 @@ form.addEventListener('input', debounce(function (e) {
 }));
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    checkGender();
+    if(checkGender() && checkCountry()) { 
+       let user = getFormValues();
+       sessionStorage.setItem('user', user);
+    }
 })

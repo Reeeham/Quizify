@@ -1,135 +1,113 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+:root {
+    --error-color: #dc3545;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 
 body {
-	margin-top: 7%;
-	 background: #333;
-	 font-family: Arial;
-	padding: 20px;
-   }
-	
-   *{
-	box-sizing: border-box;
-   }
-	
-   form{
-	max-width: 450px;
-	margin: 0 auto;
-   }
-	
-   form > div{
-	margin-top: 5px;
-	position: relative;
-	background: white;
-	border-bottom: 1px solid #ccc;
-   }
-	
-   form > div > label{
-	opacity: 0.3;
-	font-weight: bold;
-	position: absolute;
-	top: 20px;
-	left: 60px;
-   }
-	
-   form > div > input[type="text"],
-   form > div > input[type="email"],
-   form > div > input[type="password"],
-   form > div > input[type="tel"],
-   form > div > select{
-	width: 100%;
-	border: 0;
-	padding: 20px 20px 20px 60px;
-	background: #F0ECEC;
-   }
-	
-   form > div > input[type="text"]:focus,
-   form > div > input[type="email"]:focus,
-   form > div > input[type="password"]:focus,
-   form > div > input[type="tel"]:focus,
-   form > div > select:focus{
-	outline: 0;
-	background: white;
-   }
-	
-   form > div > input[type="text"]:focus + label,
-   form > div > input[type="email"]:focus + label,
-   form > div > input[type="password"]:focus + label,
-   form > div > input[type="tel"]:focus + label,
-   form > div > select:focus + label{
-	opacity: 0;
-   }
-	
-   form > div > input[type="text"]:valid,
-   form > div > input[type="email"]:valid,
-   form > div > input[type="password"]:valid,
-   form > div > input[type="tel"]:valid,
-   form > div > select:valid{
-	background: url('https://webdevtrick.com/wp-content/uploads/check-icon.svg');
-	background-size: 20px;
-	background-repeat: no-repeat;
-	background-position: 415px 18px;
-   }
-	
-   form > div > input[type="text"]:valid + label,
-   form > div > input[type="email"]:valid + label,
-   form > div > input[type="password"]:valid + label,
-   form > div > input[type="tel"]:valid + label,
-   form > div > select:valid + label
-   {
-	opacity: 0;
-   }
-	
-   form > div > input[type="text"]:invalid:not(:focus):not(:placeholder-shown),
-   form > div > input[type="email"]:invalid:not(:focus):not(:placeholder-shown),
-   form > div > input[type="password"]:invalid:not(:focus):not(:placeholder-shown),
-   form > div > input[type="tel"]:invalid:not(:focus):not(:placeholder-shown),
-   form > div > select:invalid:not(:focus):not(:placeholder-shown)
-   {
-	background: url('https://webdevtrick.com/wp-content/uploads/xicon.svg');
-	background-size: 20px;
-	background-repeat: no-repeat;
-	background-position: 415px 18px;
-   }
-	
-   form > div > input[type="text"]:invalid:not(:focus):not(:placeholder-shown) + label,
-   form > div > input[type="email"]:invalid:not(:focus):not(:placeholder-shown) + label,
-   form > div > input[type="password"]:invalid:not(:focus):not(:placeholder-shown) + label,
-   form > div > input[type="tel"]:invalid:not(:focus):not(:placeholder-shown) + label,
-   form > div > select:invalid:not(:focus):not(:placeholder-shown) + label
-   {
-	opacity: 0;
-   }
-	
-   form > div > input[type="text"]:invalid:not(:focus):not(:placeholder-shown) ~ .requirements,
-   form > div > input[type="email"]:invalid:not(:focus):not(:placeholder-shown) ~ .requirements,
-   form > div > input[type="password"]:invalid:not(:focus):not(:placeholder-shown) ~ .requirements,
-   form > div > input[type="tel"]:invalid:not(:focus):not(:placeholder-shown) ~ .requirements,
-   form > div > select:invalid:not(:focus):not(:placeholder-shown) ~ .requirements
-   {
-	margin-top: 5px;
-	max-height: 200px;
-	padding: 5px 30px 5px 50px;
-	border-top: 1px dashed #aaa;
-	background-color: whitesmoke;
-   }
-	
-   form > div .requirements {
-	padding: 0 30px 0 50px;
-	color: #C73030;
-	max-height: 0;
-	transition: 0.28s;
-	overflow: hidden;
-	font-style: italic;
-	font-size: 0.8em;
-   }
-	
-   form input[type="submit"]{
-	display: block;
-	width: 100%;
-	margin: 20px 0;
-	background: #41D873;
-	color: white;
-	border: 0;
-	padding: 20px;
-	font-size: 1.2rem;
-   }
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width: 400px;
+}
+
+.form {
+    padding: 10px 20px;
+}
+
+.form h1 {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 20px;
+
+}
+
+.form-field {
+    margin-bottom: 5px;
+
+}
+
+.form-field label {
+    display: block;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.form-field input,  .form-field select {
+    border: solid 2px #f0f0f0;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+}
+select, input[type="date"]{
+    color: #777;
+}
+.gender{
+    display: table-column-group !important;
+    width: 20% !important;
+}
+
+.form-field input:focus {
+    outline: none;
+}
+
+.form-field.error input,  .form-field.error select{
+    border-color: var(--error-color);
+}
+
+.form-field.success input ,  .form-field.error select{
+    border-color: var(--success-color);
+}
+
+
+.form-field small {
+    color: var(--error-color);
+}
+
+
+/* button */
+.btn {
+    width: 100%;
+    padding: 3%;
+    background: #007bff;
+    border-bottom: 2px solid #007bff;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background: #0069d9;
+    cursor: pointer;
+}
+
+.btn:focus {
+    outline: none;
+}
