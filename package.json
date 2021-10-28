@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ro0ka/Quizify/issues"
   },
-  "homepage": "https://github.com/ro0ka/Quizify#readme"
+  "homepage": "https://github.com/ro0ka/Quizify#readme",
+  "dependencies": {
+    "json-server": "^0.17.0"
+  }
 }

@@ -175,9 +175,9 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     if(checkGender() && checkCountry()) { 
        let user = getFormValues();
-       sessionStorage.setItem('user', JSON.stringify(user));
-       console.log('ssss',sessionStorage.getItem('user'))
-       window.location.replace('quiz.html');
-       return false; 
+       
+       console.log('ssss',user)
+       localStorage.user =  JSON.stringify(user);
+       window.location.href = '/quiz.html';
     }
 })
