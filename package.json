@@ -2,7 +2,7 @@
   "name": "quizify",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "sign-up.js",
   "scripts": {
     "server": "json-server --port 7000 --routes data/routes.json --watch data/db.json",
     "test": "echo \"Error: no test specified\" && exit 1"

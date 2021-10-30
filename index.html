@@ -29,20 +29,20 @@
             </div>
             <div class="form-field">
                 <label for="gender">Enter your gender:</label>
-                Male <input class="gender" id="male" type="radio" name="gender" value="male">     
-                Female <input class="gender" id="female" type="radio" name="gender" value="female"> 
+                Male <input class="gender" id="male" type="radio" name="gender" value="male">
+                Female <input class="gender" id="female" type="radio" name="gender" value="female">
                 <small></small>
             </div>
             <div class="form-field">
                 <label for="phone">Enter your phone number:</label>
                 <input type="tel" id="phone" name="phone" placeholder="123-45-678"
                     pattern="^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$" required>
-                    <small></small>
+                <small></small>
 
             </div>
             <div class="form-field">
                 <label for="country">Enter your country:</label>
-                <select  name="country" id="country">
+                <select name="country" id="country">
                     <option value="" disabled selected>Choose country</option>
                     <option value="Egypt">Egypt</option>
                     <option value="Argentina">Argentina</option>
@@ -60,7 +60,9 @@
                 <label for="quizId">Enter QuizID:</label>
                 <input type="text" name="quizId" id="quizId" placeholder="quiz id" required />
             </div>
-            <input type="submit">
+            <div class="form-field">
+                <input type="submit">
+            </div>
         </form>
     </div>
     <script src='scripts/sign-up.js'></script>
