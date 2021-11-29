@@ -2,7 +2,7 @@
 {
     "/signup": "/users",
     "/check-email": "/users/:email",
-    "/check-quiz-id": "/quizzes/:id",
+    "/check-quiz-id/:id": "/quizzes/:id",
     "/quiz-result": "/quiz-results"
 }
   

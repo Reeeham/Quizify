@@ -1,4 +1,4 @@
-import { getCountries } from "./api-service.js";
+import { getCountries, getQuizById } from "./api-service.js";
 
 var form = document.forms['sign-up'];
 var emailEl = document.querySelector('#email');
@@ -151,6 +151,9 @@ const debounce = (fn, delay = 500) => {
         }, delay);
     };
 };
+const checkQuizId = (quizId) => {
+    return getQuizById(quizId).then(valid => valid);
+}
 document.addEventListener('DOMContentLoaded', () =>  {
     getCountries().then(countries =>  {
         for(var i = 0; i < countries.length; i++) {
@@ -183,15 +186,17 @@ form.addEventListener('input', debounce(function (e) {
         case 'phone': 
             checkPhoneNumber();
             break;
+         
     }
 }));
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     if(checkGender() && checkCountry()) { 
        let user = getFormValues();
+       if(checkQuizId(user.quizId)) { 
+        localStorage.user =  JSON.stringify(user);
+        window.location.href = '/quiz.html';
+       }
        
-       console.log('ssss',user)
-       localStorage.user =  JSON.stringify(user);
-       window.location.href = '/quiz.html';
     }
 })
