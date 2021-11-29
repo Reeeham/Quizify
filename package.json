@@ -1,5 +1,6 @@
 {
   "name": "quizify",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "sign-up.js",

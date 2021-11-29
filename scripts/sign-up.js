@@ -1,3 +1,5 @@
+import { getCountries } from "./api-service.js";
+
 var form = document.forms['sign-up'];
 var emailEl = document.querySelector('#email');
 var nameEl = document.querySelector('#name');
@@ -6,6 +8,7 @@ var genderEl = document.getElementsByName('gender');
 var quizId = document.querySelector('#quizId');
 var phoneNoEl = document.querySelector('#phone');
 var countryEl = form.country;
+
 const isRequired = value => value === '' ? false : true;
 const isBetween = (length, min, max) => length < min || length > max ? false : true;
 const isEmailValid = (email) => {
@@ -148,6 +151,17 @@ const debounce = (fn, delay = 500) => {
         }, delay);
     };
 };
+document.addEventListener('DOMContentLoaded', () =>  {
+    getCountries().then(countries =>  {
+        for(var i = 0; i < countries.length; i++) {
+            var ele = document.createElement("option");
+            ele.value = countries[i].code;
+            ele.innerHTML = countries[i].name;
+            document.getElementById("country").appendChild(ele);
+        }
+    })
+  
+})
 
 form.addEventListener('input', debounce(function (e) {
     switch (e.target.id) {

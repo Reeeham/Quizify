@@ -13,3 +13,4 @@ node_modules/
 /webpack/webpack.common.js
 /webpack/webpack.config.dev.js
 /webpack/webpack.config.prod.js
+.DS_Store
