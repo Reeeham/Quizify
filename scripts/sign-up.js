@@ -1,4 +1,4 @@
-import { getCountries, getQuizById } from "./api-service.js";
+import { getCountries, validateQuizId } from "./api-service.js";
 
 var form = document.forms['sign-up'];
 var emailEl = document.querySelector('#email');
@@ -152,7 +152,7 @@ const debounce = (fn, delay = 500) => {
     };
 };
 const checkQuizId = (quizId) => {
-    return getQuizById(quizId).then(valid => valid);
+    return validateQuizId(quizId).then(valid => valid);
 }
 document.addEventListener('DOMContentLoaded', () =>  {
     getCountries().then(countries =>  {

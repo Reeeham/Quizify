@@ -1,82 +1,107 @@
+import { getQuestionsByQuizId } from "./api-service.js";
+const game = document.getElementById('game');
 const question = document.getElementById('question');
-const choices = Array.from(document.getElementsByClassName('choice-text'));
+const questionCounterText = document.getElementById('questionCounter');
+const scoreText = document.getElementById('score');
+const choices = document.getElementsByClassName('choice-text');
 let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
-let questionCounter = 0;
-let questions = [
-    {
-        question: 'Inside which HTML element do we put the JavaScript??',
-        choice1: '<script>',
-        choice2: '<javascript>',
-        choice3: '<js>',
-        choice4: '<scripting>',
-        answer: 1,
-    },
-    {
-        question:
-            "What is the correct syntax for referring to an external script called 'xxx.js'?",
-        choice1: "<script href='xxx.js'>",
-        choice2: "<script name='xxx.js'>",
-        choice3: "<script src='xxx.js'>",
-        choice4: "<script file='xxx.js'>",
-        answer: 3,
-    },
-    {
-        question: " How do you write 'Hello World' in an alert box?",
-        choice1: "msgBox('Hello World');",
-        choice2: "alertBox('Hello World');",
-        choice3: "msg('Hello World');",
-        choice4: "alert('Hello World');",
-        answer: 4,
-    },
-];
-let availableQuestions = [...questions];
+let questionCounter = -1;
+let questions = [];
+let user = JSON.parse(localStorage.user);
+let availableQuestions = [];
 const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 3;
+var MAX_QUESTIONS = 0;
 
-startGame = () => { 
+const startGame = () => {
     questionCounter = 0;
-    score = 0; 
+    score = 0;
     availableQuestions = [...questions];
     getNewQuestion();
 }
-getNewQuestion = () => { 
-    if(availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) { 
-        //go to the end page
+const getNewQuestion = () => {
+    if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
         return window.location.assign('/end.html');
     }
     questionCounter++;
-    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
-    currentQuestion = availableQuestions[questionIndex];
-    question.innerText =  currentQuestion.question;
+    questionCounterText.innerText = `${questionCounter + 1} / ${MAX_QUESTIONS}`;
+    currentQuestion = availableQuestions[questionCounter];
+    console.log('geh hena', availableQuestions, currentQuestion)
 
-    choices.forEach((choice) => { 
-        const number = choice.dataset['number'];
-        choice.innerText = currentQuestion['choice' + number];
-    });
-    availableQuestions.splice(questionIndex, 1);
-    acceptingAnswers = true;
+    if (currentQuestion) question.innerText = currentQuestion.question;
+    let choiceContainers = document.querySelectorAll('.choice-container');
+    if (choiceContainers) {
+        choiceContainers.forEach(c => {
+            game.removeChild(c);
+
+        })
+    }
+    if (currentQuestion.type === "mcq" || currentQuestion.type === "t/f") {
+        currentQuestion.choices.forEach(
+            (choice, i) => {
+                let choiceContainer = document.createElement('div');
+                choiceContainer.className = "choice-container";
+                let choicePrefix = document.createElement('div');
+                choicePrefix.className = "choice-prefix";
+                let choiceText = document.createElement('div');
+                choiceText.className = "choice-text";
+                choicePrefix.innerText = i + 1;
+                choiceText.innerText = choice;
+                choiceContainer.appendChild(choicePrefix);
+                choiceContainer.appendChild(choiceText);
+                game.appendChild(choiceContainer);
+                acceptingAnswers = true;
+
+            });
+    } else if (currentQuestion.type === "essay") {
+        console.log('hdhhfhfhf');
+        // let rte = document.createElement('div');
+        // rte.setAttribute(id,  'div_editor1');
+        var editor1 = new RichTextEditor("#div_editor1");
+        editor1.
+            //game.appendChild(rte);
+
+            //editor1.setHTMLCode("Use inline HTML or setHTMLCode to init the default content.");
+            acceptingAnswers = true
+    }
+
+    Array.from(choices).forEach((choice) => {
+        console.log(choice, acceptingAnswers)
+
+        choice.addEventListener('click', (e) => {
+            if (!acceptingAnswers) return;
+            acceptingAnswers = false;
+            const selectedChoice = e.target;
+            const selectedAnswer = selectedChoice.innerText;
+            const classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect';
+            if (classToApply == 'correct') {
+                incrementScore(CORRECT_BONUS);
+            }
+            selectedChoice.parentElement.classList.add(classToApply);
+
+            setTimeout(() => {
+                selectedChoice.parentElement.classList.remove(classToApply);
+                getNewQuestion();
+            }, 1000)
+        });
+    })
+
 }
-choices.forEach((choice) => { 
-    choice.addEventListener('click', (e) => { 
-        if(!acceptingAnswers) return;
-        acceptingAnswers = false;
-        const selectedChoice = e.target;
-        const selectedAnswer = selectedChoice.dataset['number'];
-        getNewQuestion();
-    });
-})
+
+const incrementScore = num => {
+    score += num;
+    scoreText.innerText = score;
+}
 document.addEventListener('DOMContentLoaded', (event) => {
-    let   user = JSON.parse(localStorage.user);
     document.querySelector('#username').textContent = `Hello ${user.name}`;
-    startGame();
+
+    getQuestionsByQuizId(user.quizId).then(res => {
+        questions = res;
+        MAX_QUESTIONS = res.length
+        startGame();
+
+    });
+
+
 });
-// function getData() {
-//   const response = await fetch('https://ghibliapi.herokuapp.com/films')
-//   const data = await response.json()
-// data.forEach(movie => {
-//   // Log each movie's title
-//   console.log(movie.title)
-// })
-// }

@@ -991,53 +991,40 @@
                 {
                     "question": "Who invented JavaScript?",
                     "type" : "mcq",
-                    "answers": {
-                        "a": "Douglas Crockford",
-                        "b": "Sheryl Sandberg",
-                        "c": "Brendan Eich"
-                    },
-                    "correctAnswer": "c"
+                    "choices": ["Douglas Crockford","Sheryl Sandberg","Brendan Eich"],
+                    "answer": "Brendan Eich"
                 },
                 {
                     "question": "Which one of these is a JavaScript package manager?",
                     "type" : "mcq",
-                    "answers": {
-                        "a": "Node.js",
-                        "b": "TypeScript",
-                        "c": "npm"
-                    },
-                    "correctAnswer": "c"
+                    "choices": ["Node.js","TypeScript","npm","ESLint"],
+                     "answer": "npm"
                 },
                 {
                     "question": "Which tool can you use to ensure code quality?",
                     "type" : "mcq",
-                    "answers": {
-                        "a": "Angular",
-                        "b": "jQuery",
-                        "c": "RequireJS",
-                        "d": "ESLint"
-                    },
-                    "correctAnswer": "d"
+                    "choices": ["Angular","jQuery","RequireJS","RequireJS"],
+                    "answer": "RequireJS"
                 },
                 {
                     "question": "What is the .NET framework?",
                     "type" : "essay",
-                    "correctAnswer": ".NET is one of the platforms provided by Microsoft, which is used to build a variety of applications using Windows.The ability to develop classes, libraries, and APIs and run, debug, and deploy code onto web services and applications form to be the key uses of this framework. It supports a lot of languages, and you can work with everything from C# to VB all the way to Perl, and more.The object-oriented model is championed here in the .NET framework"
+                    "answer": ".NET is one of the platforms provided by Microsoft, which is used to build a variety of applications using Windows.The ability to develop classes, libraries, and APIs and run, debug, and deploy code onto web services and applications form to be the key uses of this framework. It supports a lot of languages, and you can work with everything from C# to VB all the way to Perl, and more.The object-oriented model is championed here in the .NET framework"
                 },
                 {
                     "question": "What are some of the common components of .NET?",
                     "type" : "essay",
-                    "correctAnswer": "There are a lot of components that make up the .NET framework, and some of them are as follows:.NET Class Library, .NET Framework, Language Runtime, Application Domain, Profiling"
+                    "answer": "There are a lot of components that make up the .NET framework, and some of them are as follows:.NET Class Library, .NET Framework, Language Runtime, Application Domain, Profiling"
                 },{
                     "question": "All methods in an abstract base class must be declared abstract.",
                     "type" : "t/f",
-                    "answers" : { "a":"true", "b" : "false" },
-                    "correctAnswer": "false"
+                    "choices" :[true, false],
+                    "answer": true
                 }, {
                     "question": "Methods that are declared abstract in the base class must show implementation at the time of declaration.",
                     "type" : "t/f",
-                    "answers" : { "a":"true", "b" : "false" },
-                    "correctAnswer": "false"
+                    "choices" :[true, false],
+                    "answer": false
                 }
             ]
         }
