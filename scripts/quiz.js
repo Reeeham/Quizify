@@ -4,6 +4,8 @@ const question = document.getElementById('question');
 const questionCounterText = document.getElementById('questionCounter');
 const scoreText = document.getElementById('score');
 const choices = document.getElementsByClassName('choice-text');
+var rte = new RichTextEditor("#div_editor1");
+
 let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
@@ -55,15 +57,22 @@ const getNewQuestion = () => {
 
             });
     } else if (currentQuestion.type === "essay") {
-        console.log('hdhhfhfhf');
-        // let rte = document.createElement('div');
-        // rte.setAttribute(id,  'div_editor1');
-        var editor1 = new RichTextEditor("#div_editor1");
-        editor1.
-            //game.appendChild(rte);
-
-            //editor1.setHTMLCode("Use inline HTML or setHTMLCode to init the default content.");
-            acceptingAnswers = true
+        rte.setPlainText('');
+        rte.display = 'block';
+        rte.getPlainText();
+        let submitBtn = document.createElement('button');
+        submitBtn.textContent = 'Submit Answer'
+        submitBtn.addEventListener('click', (e) => { 
+            let answer = rte.getPlainText();
+            console.log('answer', answer);
+            if (answer == currentQuestion.answer) {
+                incrementScore(CORRECT_BONUS);
+            }
+            getNewQuestion();
+        });
+        game.appendChild(submitBtn);
+        acceptingAnswers = true;
+       
     }
 
     Array.from(choices).forEach((choice) => {
