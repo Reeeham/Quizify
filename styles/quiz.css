@@ -153,6 +153,14 @@ h3 {
   text-align: center;
 }
 
-#div_editor1 {
-  display: none !important;
+textarea {
+  margin-bottom: 16px;
+  display: none;
+}
+
+button {
+  width: 200px;
+  height: 30px;
+  margin: auto;
+  display: none;
 }/*# sourceMappingURL=quiz.css.map */

@@ -4,7 +4,8 @@ const question = document.getElementById('question');
 const questionCounterText = document.getElementById('questionCounter');
 const scoreText = document.getElementById('score');
 const choices = document.getElementsByClassName('choice-text');
-var rte = new RichTextEditor("#div_editor1");
+const essayTextArea = document.createElement('textarea');
+const submitBtn = document.createElement('button');
 
 let currentQuestion = {};
 let acceptingAnswers = false;
@@ -23,23 +24,26 @@ const startGame = () => {
     getNewQuestion();
 }
 const getNewQuestion = () => {
-    if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
-        return window.location.assign('/end.html');
+    if (availableQuestions.length === 0 || questionCounter >= availableQuestions.length-1) {
+        localStorage.score = JSON.stringify(score);
+        return window.location.assign('/result.html');
     }
+    console.log('counter before', questionCounter)
     questionCounter++;
-    questionCounterText.innerText = `${questionCounter + 1} / ${MAX_QUESTIONS}`;
+    console.log('counter after', questionCounter)
+    questionCounterText.innerText = `${questionCounter} / ${MAX_QUESTIONS}`;
     currentQuestion = availableQuestions[questionCounter];
-    console.log('geh hena', availableQuestions, currentQuestion)
 
     if (currentQuestion) question.innerText = currentQuestion.question;
     let choiceContainers = document.querySelectorAll('.choice-container');
     if (choiceContainers) {
         choiceContainers.forEach(c => {
             game.removeChild(c);
-
         })
     }
     if (currentQuestion.type === "mcq" || currentQuestion.type === "t/f") {
+        essayTextArea.style.display = 'none';
+        submitBtn.style.display = 'none';
         currentQuestion.choices.forEach(
             (choice, i) => {
                 let choiceContainer = document.createElement('div');
@@ -57,33 +61,36 @@ const getNewQuestion = () => {
 
             });
     } else if (currentQuestion.type === "essay") {
-        rte.setPlainText('');
-        rte.display = 'block';
-        rte.getPlainText();
-        let submitBtn = document.createElement('button');
-        submitBtn.textContent = 'Submit Answer'
+        essayTextArea.value = "";
+        essayTextArea.style.display = 'block';
+        essayTextArea.cols = 4;
+        essayTextArea.rows = 5;
+        submitBtn.style.display = 'block';
+        submitBtn.textContent = 'Submit Answer';
+        game.appendChild(essayTextArea);
+        game.appendChild(submitBtn);
+        acceptingAnswers = true;
         submitBtn.addEventListener('click', (e) => { 
-            let answer = rte.getPlainText();
-            console.log('answer', answer);
+            e.stopImmediatePropagation()
+            let answer = essayTextArea.value;
             if (answer == currentQuestion.answer) {
                 incrementScore(CORRECT_BONUS);
             }
+      
             getNewQuestion();
+
         });
-        game.appendChild(submitBtn);
-        acceptingAnswers = true;
-       
+
     }
 
     Array.from(choices).forEach((choice) => {
-        console.log(choice, acceptingAnswers)
-
         choice.addEventListener('click', (e) => {
             if (!acceptingAnswers) return;
             acceptingAnswers = false;
             const selectedChoice = e.target;
             const selectedAnswer = selectedChoice.innerText;
-            const classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect';
+            console.log('value', typeof selectedChoice.innerText, typeof currentQuestion.answer)
+            const classToApply = selectedAnswer == currentQuestion.answer.toString() ? 'correct' : 'incorrect';
             if (classToApply == 'correct') {
                 incrementScore(CORRECT_BONUS);
             }
