@@ -11,6 +11,7 @@
 
 <body>
     <div class="container">
+        <h3>Signup for the quiz</h3>
         <form id="sign-up">
             <div class="form-field">
                 <label for="name">Enter your name:</label>
@@ -29,9 +30,10 @@
             </div>
             <div class="form-field">
                 <label for="gender">Enter your gender:</label>
-                Male <input class="gender" id="male" type="radio" name="gender" value="male">
-                Female <input class="gender" id="female" type="radio" name="gender" value="female">
-                <small></small>
+                <div class="gender">
+                    <input class="gender-input" id="male" type="radio" name="gender" value="male"/>Male
+                    <input class="gender-input" id="female" type="radio" name="gender" value="female"/>Female
+                </div>
             </div>
             <div class="form-field">
                 <label for="phone">Enter your phone number:</label>
@@ -52,7 +54,7 @@
                 <input type="text" name="quizId" id="quizId" placeholder="quiz id" required />
             </div>
             <div class="form-field">
-                <input type="submit">
+                <button type="submit" class="btn">Submit</button>
             </div>
         </form>
     </div>
